@@ -3,6 +3,8 @@
 About `sysuse`
 ==============
 
+[![Travis-CI Build Status](https://travis-ci.org/jjchern/sysuse.svg?branch=master)](https://travis-ci.org/jjchern/sysuse) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jjchern/sysuse?branch=master&svg=true)](https://ci.appveyor.com/project/jjchern/sysuse)
+
 The goal of `sysuse` is to store the Stata example datasets locally so that using them in R will be even easier.
 
 Example datasets are of great help when it comes to learning new concepts or tools in data science. Many R packages provide example code using datasets such as `mtcars` or `iris`. For new learners who are not familiar with such data (or for those who dislike cars and flowers), being forced to use them might add unnecessary cognitive load.
@@ -33,7 +35,7 @@ nlsw88
 The function `webuse::webuse()` is like the Stata command `webuse`. Similarly, the current package `sysuse` tries to call the datasets from local directories, just like Stata's `sysuse` command. Once the package is installed, you can load your favorite data without the internet connection and with just one line of code:
 
 ``` r
-nlsw88
+sysuse::nlsw88
 #> # A tibble: 2,246 x 17
 #>    idcode   age      race   married never_married grade  collgrad south
 #>     <dbl> <dbl> <dbl+lbl> <dbl+lbl>         <dbl> <dbl> <dbl+lbl> <dbl>
@@ -69,7 +71,7 @@ Suppose you try to learn how to do a two-way table of frequency counts in tidyve
 
 ``` r
 library(tidyverse)
-nlsw88 %>%
+sysuse::nlsw88 %>%
     haven::as_factor() %>% 
     count(married, race) %>% 
     spread(race, n, fill = 0)
